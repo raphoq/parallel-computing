@@ -1,0 +1,41 @@
+Mno¿enie macierzy przez wektor
+
+matric.c - równoleg³y
+matrixseq.c - sekwencyjne
+
+Do uruchomienia programów podajemy parametr, który oznacza rozmiar naszej macierzy,
+ma on byæ podzielny przez 4.
+
+Zgodnie z teori¹, tak i tutaj wydaje siê zauwa¿yæ przewagê programu sekwencyjnego dla ma³ej iloœci danych,
+spowodowane jest to komunikacj¹ procesów, która zawsze wymaga pewnych nak³adów pracy procesorów.
+W przypadku niewielkich obliczeñ trwa ona d³u¿sz¹ czêœæ czasu wykonania programu.
+
+Œrednie czasy:
+	Macierz 16x16 : 
+		Równoleg³y : Rozbie¿noœæ, przewa¿aj¹ca wiêkszoœæ czasów od 1 do 5 ms, sporadycznie ok. 0,9ms
+		Sekwencyjny: Bardzo podobne wyniki za ka¿dym razem, od 0,03ms do 0,05ms
+	Macierz 100x100 :
+		Równoleg³y : Tak jak w macierzy 16x16
+		Sekwencyjny: Znowu rozbie¿noœci du¿o mniejsze ni¿ w równoleg³ym, od 0,09ms do 0,15ms
+	Macierz 1000x1000 :
+		Równoleg³y : Zda¿aj¹ siê rozbie¿noœci, nawet do 10ms, ale przez wiêkszoœæ czasu
+			     wyniki na poziomie 5-7ms, coraz lepiej
+		Sekwencyjny: Wyniki na bardzo sta³ym poziomie, w okolicach 7ms, chwilami czas skacze do 10ms,
+			     przy tym rozmiarze macierzy, nawet przy najoptymistyczniejszym czasie programu
+			     sekwencyjnego przegrywa z wiêkszoœci¹ czasow wersji równoleg³ej
+	Macierz 5000x5000 :
+		Równoleg³y : Bardzo sta³e czasy, w granicach 150ms, wachania +- 20ms
+		Sekwencyjny: Za ka¿dym razem jest wolniejszy od wersji równoleg³ej, czasy na sta³ym poziomie 180ms
+	Macierz 10000x10000 : 
+		Równoleg³y : Czasy na poziomie 580 - 640ms b¹dŸ poza zakresem unsigned long
+		Sekwencyjny: Czasy na poziomie 750ms lub poza zakresem unsigned long, zawsze gorszy od równoleg³ego 
+
+Wniosek: 
+Przy ma³ych porcjach danych program sekwencyjny okazuje siê zawsze lepszy, w miarê jak roœnie iloœæ danych,
+czas programów sekwencyjnych roœnie, ale czasy s¹ zawsze bardzo zbli¿one. Jeœli chodzi o wersje równoleg³e
+dopiero przy obliczeniach na danych rzêdu wielkoœci 1000, widaæ krótsze czasy obliczeñ, przy macierzach rzêdu 10000
+nadal by³y szybsze. Tak wiêc do prostych obliczeñ programy równoleg³e nie nadaj¹ siê ze wzglêdu na narzut który
+powstaje w wyniku komunikacji procesów. Dla du¿ych danych natomiast s¹ bezkonkurencyjne.
+
+
+Rafa³ £uczun 195000

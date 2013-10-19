@@ -1,0 +1,34 @@
+Monte Carlo Algorytm
+
+montecarlo.c - Program równoleg³y
+monteracloseq.c - Program sekwencyjny
+
+Oba programy uruchamiamy podaj¹c liczbê liczb do wygenerowania, dla wersji równoleg³ej jest to liczba do wygenerowania 
+dla jednego procesora, w wersji sekwencyjnej, dla ca³ego programu.
+
+Monte Carlo jest algorytmem który œwietnie sprawdza siê w programowaniu równoleg³ym, jednak moje pomiary w ka¿dej
+sytuacji da³y lepsze wyniki dla wersji sekwencyjnej.
+
+Œrednie czasy:
+	Dla wartoœci z zadania(2000 liczb na proces)
+	Równoleg³y : 4 procesy, ka¿dy po 2000 liczb, czyli 8000 liczb, 4000 punktów, czasy bardzo rozbie¿ne najni¿szy 0,7ms, 
+		     wiêkszoœæ czasów w granicach 3-8ms, œrednio 5ms
+		     2 procesy, ka¿dy po 4000 liczb, œrednie czasu od 3 do 5ms, du¿o mniejsza rozbie¿noœæ
+	Sekwencyjny: Wszystkie czasy du¿o lepsze, od 0,15ms do 3ms
+
+	Wartoœci *10, czyli 20000 na proces
+	Równoleg³y : 4 procesy, czasy miêdzy 2-7ms, œrednio ok. 4,5ms
+		     2 procesy, czasy i rozbie¿noœæ du¿o mniejsze, œrednio ok. 2,5ms
+	Sekwencyjny: Czasy bardzo zbli¿one, od 1,65-1,8ms, œrednio 1,7ms
+
+	Wartoœci *10, czyli 200000 na proces
+	Równoleg³y : 4 procesy, czasy od 20-140ms, bardzo du¿a rozbie¿noœæ, wiêksza czêœæ czasów w granicach 25ms
+		     2 procesy, œrednia czasów tak¿e w okolicach 25ms
+	Sekwencyjny: Czasy od 17 do 23ms, œrednio w okolicach 18ms
+
+Wniosek: Dla ka¿dych wartoœci wersja sekwencyjna okaza³a siê wydajniejsza, i mniej podatna na rozbie¿noœæ czasów wykonania.
+	 Wersja równoleg³a dla ma³ych danych nie powinna byæ uruchamiana na wiêkszej liczbe procesorów, poniewa¿ wtedy
+	 wiêkszoœæ czasu dzia³ania programu zajmuje wymiana danych, w zasadzie dla ka¿dej wersji 2 procesory by³y
+	 wydajniejsze od 4, ale dla ma³ych wartoœci momentami uruchomienie na 4 zamiast na 2 dawa³o 10 razy gorsze wyniki.
+
+Rafa³ £uczun 195000

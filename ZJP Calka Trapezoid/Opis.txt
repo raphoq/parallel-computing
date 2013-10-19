@@ -1,0 +1,21 @@
+Całkowanie funkcji metodą trapezoidu
+
+Dane do zadania: 
+	Funkcja f(x) = e^-x^2
+	a = -2
+	b = 2
+	n = 512 (Liczba x w przedziale pomiedzy którymi będziemy liczyć pola trapezów)
+	
+Średnie czasy:
+	Równoległy:
+		2 procesory: Czasy od 0,1 do 0,16ms, zdecydowana większość ok 0,1ms
+		4 procesory: Bardzo podobnie, większość czasów ok. 0,15ms
+		8 procesorów Czasy od 0,12 do nawet 0,3ms, dużo większa rozbieżność, średnio 0,25ms
+		16 procesorów: Rozbieżność coraz większa, nawet do 0,8ms, średnio ok 0,3-0,35ms
+	Sekwencyjny:
+		1 procesor: Średnie czasy w okolicach 0,15ms, praktycznie stałe
+		
+Wniosek: Dzięki temu, że komunikacja w programie występuje tylko w jednym miejscu, a dokładnie na końcu, komunikacja
+		 zajmuje tu mniejszą część czasu wykonania programu, biorąc pod uwagę wydajność równoległa wersja jest lepsza
+		 dla w miarę sensownej liczby procesorów. Podsumowując, równoległa wersja jest szybsza jeśli większość czasu
+		 zajmuje sam algorytm, a nie komunikacja.
